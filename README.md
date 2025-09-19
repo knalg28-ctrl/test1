@@ -22,6 +22,11 @@
 
         .container {
             text-align: center;
+            display: none;
+        }
+
+        .container.active {
+            display: block;
         }
 
         h1 {
@@ -52,55 +57,53 @@
     </style>
 </head>
 <body>
-    <div class="container" id="paso1">
+    <!-- Pregunta 1 -->
+    <div class="container active" id="paso1">
         <h1>¿Me amas?</h1>
         <button onclick="mostrarRespuesta('si')">Sí</button>
         <button onclick="mostrarRespuesta('no')">No</button>
-        <div id="respuesta" class="respuesta"></div>
+        <div id="respuesta1" class="respuesta"></div>
     </div>
 
-    <div class="container" id="paso2" style="display: none;">
+    <!-- Pregunta 2 -->
+    <div class="container" id="paso2">
         <h1>¿Cuánto?</h1>
         <button onclick="cuantoRespuesta('poco')">Un poco</button>
         <button onclick="cuantoRespuesta('mucho')">Mucho</button>
     </div>
 
-    <div class="container" id="paso3" style="display: none;">
+    <!-- Pregunta 3 -->
+    <div class="container" id="paso3">
         <h1>¿Por qué hiciste todo si me amabas mucho?</h1>
         <div class="respuesta">Porque el amor verdadero a veces también duele 💔</div>
     </div>
 
     <script>
         function mostrarRespuesta(opcion) {
-            const paso1 = document.getElementById('paso1');
-            const paso2 = document.getElementById('paso2');
-            const respuesta = document.getElementById('respuesta');
-
+            const respuesta1 = document.getElementById('respuesta1');
             if (opcion === 'si') {
-                respuesta.textContent = "Yo también ❤️";
+                respuesta1.textContent = "Yo también ❤️";
                 setTimeout(() => {
-                    paso1.style.display = 'none';
-                    paso2.style.display = 'block';
+                    mostrarPaso('paso1', 'paso2');
                 }, 1500);
             } else {
-                respuesta.textContent = "Mientes 😢";
+                respuesta1.textContent = "Mientes 😢";
             }
         }
 
         function cuantoRespuesta(nivel) {
-            const paso2 = document.getElementById('paso2');
-            const paso3 = document.getElementById('paso3');
-
             if (nivel === 'poco') {
-                // Mostrar página en blanco con emoji enojado
+                // Pantalla blanca con emoji de enojo
                 document.body.innerHTML = '<div style="font-size: 5em; text-align: center; margin-top: 20%;">😠</div>';
                 document.body.style.backgroundColor = 'white';
             } else if (nivel === 'mucho') {
-                // Mostrar cara enamorada y siguiente pregunta
-                document.body.style.backgroundColor = 'white';
-                paso2.style.display = 'none';
-                paso3.style.display = 'block';
+                mostrarPaso('paso2', 'paso3');
             }
+        }
+
+        function mostrarPaso(actual, siguiente) {
+            document.getElementById(actual).classList.remove('active');
+            document.getElementById(siguiente).classList.add('active');
         }
     </script>
 </body>
