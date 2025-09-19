@@ -75,7 +75,7 @@
     <!-- Pregunta 3 -->
     <div class="container" id="paso3">
         <h1>¿Por qué hiciste todo si me amabas mucho?</h1>
-        <div class="respuesta">Porque el amor verdadero a veces también duele 💔</div>
+        <div class="respuesta">Te odio 💔</div>
     </div>
 
     <script>
